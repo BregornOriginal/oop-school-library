@@ -8,6 +8,7 @@ class App
   def initialize()
     @people = []
     @books = []
+    @rentals = []
   end
 
   def run
@@ -61,6 +62,26 @@ class App
     author = gets.chomp
     @books.push(Book.new(title, author))
     print 'Press any key to back main menu'
+    wait = gets.chomp
+    run
+  end
+
+  def rent_a_book
+    print "Select a book from the following list by number\n"
+    @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
+    book_selected = gets.chomp.to_i
+    print "Select a person from the following list by number\n"
+    @people.each_with_index do |person, idx|
+      line = "#{idx + 1}) [#{person.class}] Name: #{person.name}, Age: #{person.age}\n"
+      print line
+    end
+    person_selected = gets.chomp.to_i
+    print "Please input the date\n"
+    date = gets.chomp.to_i
+    print "Rental created successfully\n"
+    @rentals.push(Rental.new(date, @books[book_selected - 1], @people[person_selected - 1]))
+    print @rentals
+    print "Press any key to back main menu"
     wait = gets.chomp
     run
   end
