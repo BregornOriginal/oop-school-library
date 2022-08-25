@@ -65,6 +65,16 @@ class App
     run
   end
 
+  def list_people
+    @people.each_with_index do |person, idx|
+      line = "#{idx}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
+      print line
+    end
+    print "Press any key to back main menu"
+    wait = gets.chomp
+    run
+  end
+
   def list_books
     @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
     print "Press any key to back main menu"
