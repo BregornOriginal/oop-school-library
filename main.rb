@@ -61,7 +61,6 @@ print "Nueva renta\n"
 
 p julio_renta
 
-add_book_to_julio = julio_renta.add_book()
+add_book_to_julio = julio_renta.add_book
 
 p add_book_to_julio.first.book
-
