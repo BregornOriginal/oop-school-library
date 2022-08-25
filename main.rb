@@ -10,6 +10,8 @@ require './book'
 require './rental'
 require 'date'
 
+# EXAMPLES OF RELATIONSHIPS BETWEEN STUDENT AND CLASSROOM
+
 # first_classroom = Classroom.new(10)
 
 # julio1 = Person.new(18, 'Julio')
@@ -43,25 +45,23 @@ require 'date'
 
 # p student
 
-julio_person = Person.new(18, 'Julio')
-julio_book = Book.new('Best', 'Book')
-julio_book2 = Book.new('Second', 'Book')
+# EXAMPLES OF RELATIONSHIPS BETWEEN BOOK, RENTALS AND PERSON
 
-print "Nueva persona\n"
-p julio_person
+julio_person = Person.new(18, 'Julio')
+
+julio_book = Book.new('Best', 'Book')
 
 print "Nuevo libro\n"
+
 p julio_book
 
 julio_renta = Rental.new('2022-08-24', julio_book, julio_person)
-julio_renta = Rental.new('1922-08-24', julio_book2, julio_person)
-
-add_book_to_julio = julio_renta.add_book(julio_renta)
 
 print "Nueva renta\n"
 
-p julio_renta.person.rentals.first.book
+p julio_renta
 
-print "Agregar libro\n"
+add_book_to_julio = julio_renta.add_book()
 
-add_book_to_julio
+p add_book_to_julio.first.book
+

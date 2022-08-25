@@ -4,18 +4,15 @@ class Rental
 
   def initialize(date, book, person)
     @date = date
-
     @book = book
-    book.rentals << self
-
     @person = person
-    person.rentals << self
 
-    @books = []
+    @rentals = []
   end
 
-  def add_book(book)
-    @books.push(book)
-    book.rentals = self
+  def add_book
+    @rentals.push(self)
+    book.rentals << self unless book.rentals.include?(self)
+    person.rentals << self unless person.rentals.include?(self)
   end
 end
