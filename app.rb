@@ -7,6 +7,7 @@ require './teacher'
 class App
   def initialize()
     @people = []
+    @books = []
   end
 
   def run
@@ -33,47 +34,55 @@ class App
   def create_person
     print 'Do you want to create a student (1) or a teacher (2) [input the number]: '
     type_of_person = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp
+    print 'Age: '
+    age = gets.chomp
     if type_of_person == 1
-      print 'Name: '
-      name = gets.chomp
-      print 'Age: '
-      age = gets.chomp
       print 'Has parent permission? [Y/N]: '
       permission = gets.chomp.upcase
       @people.push(Student.new(age, nil, name, permission == 'Y'))
-      p @people
     else
-      print 'Name: '
-      name = gets.chomp
-      print 'Age: '
-      age = gets.chomp
       print 'Specialization: '
       specialization = gets.chomp
       print 'Has parent permission? [Y/N]: '
       permission = gets.chomp.upcase
-      @people.push(Teacher.new(age, specialization, name, permission == 'Y'))
-      p @people
+      @people.push(Teacher.new(name, specialization, age, permission == 'Y'))
     end
+    print "Person created successfully\nPress any key to back main menu"
+    wait = gets.chomp
+    run
   end
+
+  def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    @books.push(Book.new(title, author))
+    print 'Press any key to back main menu'
+    wait = gets.chomp
+    run
+  end
+
+
 
   def options
     case @user_choise
     when 1
-      'You ran out of gas.'
+      list_books
     when 2
-      'The tank is almost empty. Quickly, find a gas station!'
+      list_people
     when 3
       create_person
     when 4
-      'The tank is almost full.'
+      create_book
     when 5
-      '5'
+      rent_a_book
     when 6
       '6'
     when 7
       '7'
-    else
-      "Error: capacity has an invalid value (#{capacity})"
     end
   end
 end
