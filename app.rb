@@ -71,11 +71,11 @@ class App
   end
 
   def sending_message
-    # 8.times do |i|
-    #   print "Sending.#{'.' * (i % 3)}  \r"
-    #   $stdout.flush
-    #   sleep(0.5)
-    # end
+    8.times do |i|
+      print "Sending.#{'.' * (i % 3)}  \r"
+      $stdout.flush
+      sleep(0.5)
+    end
   end
 
   def create_person
@@ -136,7 +136,6 @@ class App
 
   def list_rentals
     if @people.length.positive?
-      list_people
       print 'ID of person: '
       id_selected = gets.chomp.to_i
       @people.each do |person|
