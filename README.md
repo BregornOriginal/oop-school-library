@@ -2,19 +2,26 @@
 
 # OOP School Library
 
->  In this project, I will start building a school library app.
+*In this project, I will start building a school library app. In this programm you can create a person, wich one can be added as Student or as a Teacher.*
+*Each type of person have differents propertyes that's are added to his respectly classes.*
+*You can add a book to the program*
+*Then you can rent a book for a specific person*
+*And finnaly you can list the rents of books of a specific person, by ID.*
+*There's a option that's let you exit of the program*
 
 ## Live Demo
 
-There is no Live Demo for now.
+There is no Live Demo for now.!
+
+[Example of the program](https://user-images.githubusercontent.com/93630700/186967290-f15f7500-20db-4297-9d40-78bd84221aa3.gif)
 
 ## Build With
-
-### Technologies
 
 🔷 Ruby
 
 🔷 IRB
+
+### Technologies
 
 ### Tools
 

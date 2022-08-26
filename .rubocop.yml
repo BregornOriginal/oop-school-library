@@ -1,6 +1,10 @@
 AllCops:
   NewCops: enable
   Exclude:
+    - "person.rb"
+    - "student.rb"
+    - "teacher.rb"
+    - "app.rb"
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
