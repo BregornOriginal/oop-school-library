@@ -8,11 +8,12 @@ class Rental
     @person = person
 
     @rentals = []
+    add_book
   end
 
   def add_book
     @rentals.push(self)
-    book.rentals << self unless book.rentals.include?(self)
-    person.rentals << self unless person.rentals.include?(self)
+    book.rentals.push(self) unless book.rentals.include?(self)
+    person.rentals.push(self) unless person.rentals.include?(self)
   end
 end
