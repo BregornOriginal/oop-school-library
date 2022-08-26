@@ -4,6 +4,8 @@ require './rental'
 require './student'
 require './teacher'
 
+# ┬├─┼╚▌cτσα↑¶↨↓→╗mƒ¡╕¿♣◘◘○◙♂☻πΓß▄▌▐▀αßΓπ╤¥▄
+
 class App
   def initialize()
     @people = []
@@ -12,18 +14,26 @@ class App
   end
 
   def run
-    puts 'Welcome to School Library App!'
+    clear_console
+    puts "\n"
+    puts '◘◘◘◘◘◘◘◘◘◘ Welcome to School Library App! ◘◘◘◘◘◘◘◘◘◘'
     puts "\n"
     puts 'Please choose an option by enterin a number:'
-    puts '1- List all books'
-    puts '2- List all people'
-    puts '3- Create a person'
-    puts '4- Create a book'
-    puts '5- Create a rental'
-    puts '6- List all rentals for a given person id'
-    puts '7- Exit'
+    puts "\n"
+    puts '1 → List all books'
+    puts '2 → List all people'
+    puts '3 → Create a person'
+    puts '4 → Create a book'
+    puts '5 → Create a rental'
+    puts '6 → List all rentals for a given person id'
+    puts '7 → Exit'
+    puts "\n"
     @user_choise = gets.chomp.to_i
     options
+  end
+
+  def clear_console
+    system('cls')
   end
 
   def options
@@ -46,16 +56,24 @@ class App
       line = "#{idx + 1}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
       print line
     end
-    print 'Press any key to go back to main menu'
+    print "Press any key to go back to main menu\n"
     wait = gets.chomp
     run
   end
 
   def list_books
     @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
-    print 'Press any key to go back to main menu'
+    print "Press any key to go back to main menu\n"
     wait = gets.chomp
     run
+  end
+
+  def sending_message
+    8.times do |i|
+      print "Sending.#{'.' * (i % 3)}  \r"
+      $stdout.flush
+      sleep(0.5)
+    end
   end
 
   def create_person
@@ -76,8 +94,9 @@ class App
       permission = gets.chomp.upcase
       @people.push(Teacher.new(name, specialization, age, permission == 'Y'))
     end
-    print "Person created successfully\nPress any key to go back to main menu"
-    sleep 2
+    sending_message
+    print "Person created successfully\n"
+    sleep 1
     run
   end
 
@@ -87,8 +106,10 @@ class App
     print 'Author: '
     author = gets.chomp
     @books.push(Book.new(title, author))
+    print "\n"
+    sending_message
     print "Book created successfully\n"
-    sleep 2
+    sleep 1
     run
   end
 
@@ -104,13 +125,15 @@ class App
     person_selected = gets.chomp.to_i
     print "Please enter the date[yyyy-mm-dd]\n"
     date = gets.chomp.to_i
-    print "Rental created successfully\n"
     @rentals.push(Rental.new(date, @books[book_selected - 1], @people[person_selected - 1]))
-    sleep 2
+    sending_message
+    print "Rental created successfully\n"
+    sleep 1
     run
   end
 
   def list_rentals
+    @people
     print 'ID of person: '
     id_selected = gets.chomp.to_i
     @people.each do |person|
@@ -127,6 +150,6 @@ class App
   end
 
   def end_app
-    print "Thanks for using School Library App, Bye\n"
+    print "© Thanks for using School Library App ©\n"
   end
 end
