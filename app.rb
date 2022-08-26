@@ -26,11 +26,38 @@ class App
     options
   end
 
-  def list_all_books; end
+  def options
+    case @user_choise
+    when 1 then list_books
+    when 2 then list_people
+    when 3 then create_person
+    when 4 then create_book
+    when 5 then rent_a_book
+    when 6 then list_rentals
+    when 7 then end_app
+    else print "Please select a valid option, it's accept numbers 1 to 7\n"
+         print 'Press any key to back main menu'
+         wait = gets.chomp
+         run
+    end
+  end
 
-  def list_all_people; end
+  def list_people
+    @people.each_with_index do |person, idx|
+      line = "#{idx + 1}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
+      print line
+    end
+    print 'Press any key to back main menu'
+    wait = gets.chomp
+    run
+  end
 
-  def list_all_rentals; end
+  def list_books
+    @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
+    print 'Press any key to back main menu'
+    wait = gets.chomp
+    run
+  end
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2) [input the number]: '
@@ -76,49 +103,33 @@ class App
       print line
     end
     person_selected = gets.chomp.to_i
-    print "Please input the date\n"
+    print "Please enter the date[yyyy-mm-dd]\n"
     date = gets.chomp.to_i
     print "Rental created successfully\n"
     @rentals.push(Rental.new(date, @books[book_selected - 1], @people[person_selected - 1]))
     print @rentals
-    print "Press any key to back main menu"
+    print 'Press any key to back main menu'
     wait = gets.chomp
     run
   end
 
-  def list_people
-    @people.each_with_index do |person, idx|
-      line = "#{idx}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
-      print line
+  def list_rentals
+    print 'ID of person: '
+    id_selected = gets.chomp.to_i
+    @people.each do |person|
+      if person.id == id_selected
+        print "Rentals:\n"
+        "Date: #{rental.date}, Book: #{people.book} by #{people.author}"
+      else
+        print "please choose another ID\n"
+      end
+      print "Press any key to back main menu\n"
+      wait = gets.chomp
+      run
     end
-    print "Press any key to back main menu"
-    wait = gets.chomp
-    run
   end
 
-  def list_books
-    @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
-    print "Press any key to back main menu"
-    wait = gets.chomp
-    run  
-  end
-
-  def options
-    case @user_choise
-    when 1
-      list_books
-    when 2
-      list_people
-    when 3
-      create_person
-    when 4
-      create_book
-    when 5
-      rent_a_book
-    when 6
-      '6'
-    when 7
-      '7'
-    end
+  def end_app
+    print "Thanks for using School Library App, Bye\n"
   end
 end
