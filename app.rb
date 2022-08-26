@@ -33,7 +33,7 @@ class App
   end
 
   def clear_console
-    system('cls')
+    system('clear')
   end
 
   def options
@@ -71,11 +71,11 @@ class App
   end
 
   def sending_message
-    8.times do |i|
-      print "Sending.#{'.' * (i % 3)}  \r"
-      $stdout.flush
-      sleep(0.5)
-    end
+    # 8.times do |i|
+    #   print "Sending.#{'.' * (i % 3)}  \r"
+    #   $stdout.flush
+    #   sleep(0.5)
+    # end
   end
 
   def create_person
@@ -126,7 +126,7 @@ class App
     end
     person_selected = gets.chomp.to_i
     print "Please enter the date[yyyy-mm-dd]\n"
-    date = gets.chomp.to_i
+    date = gets.chomp
     @rentals.push(Rental.new(date, @books[book_selected - 1], @people[person_selected - 1]))
     sending_message
     print "Rental created successfully\n"
@@ -135,18 +135,24 @@ class App
   end
 
   def list_rentals
-    @people
-    print 'ID of person: '
-    id_selected = gets.chomp.to_i
-    @people.each do |person|
-      if person.id == id_selected
-        print "Rentals:\n"
-        "Date: #{rental.date}, Book: #{people.book} by #{people.author}"
-      else
-        print "This ID hasn't rentals asigned for now\n"
+    if @people.length.positive?
+      list_people
+      print 'ID of person: '
+      id_selected = gets.chomp.to_i
+      @people.each do |person|
+        if person.id == id_selected
+          print "Rentals:\n\n"
+          person.rentals.each_with_index do |item, idx|
+            print " #{idx + 1}) Date: #{item.date}, Book: #{item.book.title} writed by #{item.book.author}\n\n"
+          end
+        else
+          print "This ID hasn't rentals asigned for now\n\n"
+        end
       end
-      back_main_menu
+    else
+      print "There is no persons created\n\n"
     end
+    back_main_menu
   end
 
   def end_app
