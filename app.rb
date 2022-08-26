@@ -144,8 +144,6 @@ class App
           person.rentals.each_with_index do |item, idx|
             print " #{idx + 1}) Date: #{item.date}, Book: #{item.book.title} writed by #{item.book.author}\n\n"
           end
-        else
-          print "This ID hasn't rentals asigned for now\n\n"
         end
       end
     else
