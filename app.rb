@@ -36,8 +36,7 @@ class App
     when 6 then list_rentals
     when 7 then end_app
     else print "Please select a valid option, it's accept numbers 1 to 7\n"
-         print 'Press any key to back main menu'
-         wait = gets.chomp
+         sleep 3
          run
     end
   end
@@ -47,14 +46,14 @@ class App
       line = "#{idx + 1}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
       print line
     end
-    print 'Press any key to back main menu'
+    print 'Press any key to go back to main menu'
     wait = gets.chomp
     run
   end
 
   def list_books
     @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
-    print 'Press any key to back main menu'
+    print 'Press any key to go back to main menu'
     wait = gets.chomp
     run
   end
@@ -77,8 +76,8 @@ class App
       permission = gets.chomp.upcase
       @people.push(Teacher.new(name, specialization, age, permission == 'Y'))
     end
-    print "Person created successfully\nPress any key to back main menu"
-    wait = gets.chomp
+    print "Person created successfully\nPress any key to go back to main menu"
+    sleep 2
     run
   end
 
@@ -88,8 +87,8 @@ class App
     print 'Author: '
     author = gets.chomp
     @books.push(Book.new(title, author))
-    print 'Press any key to back main menu'
-    wait = gets.chomp
+    print "Book created successfully\n"
+    sleep 2
     run
   end
 
@@ -107,9 +106,7 @@ class App
     date = gets.chomp.to_i
     print "Rental created successfully\n"
     @rentals.push(Rental.new(date, @books[book_selected - 1], @people[person_selected - 1]))
-    print @rentals
-    print 'Press any key to back main menu'
-    wait = gets.chomp
+    sleep 2
     run
   end
 
@@ -121,9 +118,9 @@ class App
         print "Rentals:\n"
         "Date: #{rental.date}, Book: #{people.book} by #{people.author}"
       else
-        print "please choose another ID\n"
+        print "This ID hasn't rentals asigned for now\n"
       end
-      print "Press any key to back main menu\n"
+      print "Press any key to go back to main menu\n"
       wait = gets.chomp
       run
     end
