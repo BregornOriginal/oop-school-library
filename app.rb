@@ -51,21 +51,23 @@ class App
     end
   end
 
-  def list_people
-    @people.each_with_index do |person, idx|
-      line = "#{idx + 1}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
-      print line
-    end
+  def back_main_menu
     print "Press any key to go back to main menu\n"
     wait = gets.chomp
     run
   end
 
+  def list_people
+    @people.each_with_index do |person, idx|
+      line = "#{idx + 1}) [#{person.class}] Name: #{person.name}, Age: #{person.age} ID: #{person.id}\n"
+      print line
+    end
+    back_main_menu
+  end
+
   def list_books
     @books.each_with_index { |book, idx| print "#{idx + 1}) Title: #{book.title}, Author: #{book.author}\n" }
-    print "Press any key to go back to main menu\n"
-    wait = gets.chomp
-    run
+    back_main_menu
   end
 
   def sending_message
@@ -143,9 +145,7 @@ class App
       else
         print "This ID hasn't rentals asigned for now\n"
       end
-      print "Press any key to go back to main menu\n"
-      wait = gets.chomp
-      run
+      back_main_menu
     end
   end
 
