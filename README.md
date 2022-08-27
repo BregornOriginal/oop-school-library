@@ -1,12 +1,13 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # OOP School Library
+In this program you can create a person, which one can be added as Student or as a Teacher. Each type of person have different properties that's are added to his respect classes. You can add a book to the program Then you can rent a book for a specific person And finally you can list the rents of books of a specific person, by ID. There's a option that's let you exit of the program
 
-*In this project, I will start building a school library app. In this programm you can create a person, wich one can be added as Student or as a Teacher.*
-*Each type of person have differents propertyes that's are added to his respectly classes.*
+*In this program you can create a person, which one can be added as Student or as a Teacher.*
+*Each type of person have different properties that's are added to his respect classes.*
 *You can add a book to the program*
 *Then you can rent a book for a specific person*
-*And finnaly you can list the rents of books of a specific person, by ID.*
+*And finally you can list the rents of books of a specific person, by ID.*
 *There's a option that's let you exit of the program*
 
 ## Live Demo
