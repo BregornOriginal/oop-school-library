@@ -3,14 +3,19 @@ require './person'
 require './rental'
 require './student'
 require './teacher'
+require 'json'
 
 # ┬├─┼╚▌cτσα↑¶↨↓→╗mƒ¡╕¿♣◘◘○◙♂☻πΓß▄▌▐▀αßΓπ╤¥▄
 
 class App
+  attr_accessor :people, :books, :rentals
+  DATA_DIRECTORY = './library_data/'.freeze
+
   def initialize()
     @people = []
     @books = []
     @rentals = []
+    read_books_from_file
   end
 
   def run
@@ -110,6 +115,7 @@ class App
     @books.push(Book.new(title, author))
     print "\n"
     sending_message
+    write_books_data
     print "Book created successfully\n"
     sleep 1
     run
@@ -142,7 +148,7 @@ class App
         if person.id == id_selected
           print "Rentals:\n\n"
           person.rentals.each_with_index do |item, idx|
-            print " #{idx + 1}) Date: #{item.date}, Book: #{item.book.title} writed by #{item.book.author}\n\n"
+            print " #{idx + 1}) Date: #{item.date}, Book: #{item.book.title} written by #{item.book.author}\n\n"
           end
         end
       end
@@ -150,6 +156,33 @@ class App
       print "There is no persons created\n\n"
     end
     back_main_menu
+  end
+
+  def read_books_from_file
+    if File.exist?("#{DATA_DIRECTORY}books.json")
+      books_file = File.open("#{DATA_DIRECTORY}books.json")
+      data = JSON.parse(books_file.read)
+      data.each do |book|
+        @books << Book.new(book['title'], book['author'], book['id'])
+      end
+      books_file.close
+    else
+      @books = []
+      write_books_data
+    end
+  end
+
+  def write_books_data
+    data = if @books.length.positive?
+             @books.map do |book|
+               { title: book.title, author: book.author, id: book.id }
+             end
+           else
+             []
+           end
+    books_file = File.open("#{DATA_DIRECTORY}books.json", 'w')
+    books_file.write(JSON.pretty_generate(data))
+    books_file.close
   end
 
   def end_app
