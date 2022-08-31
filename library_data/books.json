@@ -1,0 +1,22 @@
+[
+  {
+    "title": "The Lord Of The Rings",
+    "author": "J.R.R. Tolkien",
+    "id": 34011
+  },
+  {
+    "title": "Harry Potter",
+    "author": "Unknown",
+    "id": 68399
+  },
+  {
+    "title": "JavaScript Eloquent",
+    "author": "Marijn Haverbeke",
+    "id": 33729
+  },
+  {
+    "title": "Clean Code",
+    "author": "Robert Martín",
+    "id": 78469
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "class": "Student",
+    "age": "12",
+    "name": "Julio",
+    "classroom": "default class",
+    "parent_permission": true,
+    "id": 84804
+  },
+  {
+    "class": "Teacher",
+    "age": "32",
+    "name": "Gaston",
+    "specialization": "Math",
+    "id": 48170
+  },
+  {
+    "class": "Teacher",
+    "age": "55",
+    "name": "Jack",
+    "specialization": "Police",
+    "id": 77649
+  },
+  {
+    "class": "Student",
+    "age": "22",
+    "name": "Daniel",
+    "classroom": "default class",
+    "parent_permission": true,
+    "id": 18671
+  },
+  {
+    "class": "Student",
+    "age": "44",
+    "name": "Donald Duck",
+    "classroom": "default class",
+    "parent_permission": true,
+    "id": 16393
+  },
+  {
+    "class": "Teacher",
+    "age": "66",
+    "name": "Bil Gates",
+    "specialization": "Math",
+    "id": 36716
+  }
+]

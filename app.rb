@@ -18,6 +18,7 @@ class App
     @clasroom = 'default class'
     read_people_from_file
     read_books_from_file
+    read_rentals_from_file
   end
 
   def run
@@ -107,7 +108,7 @@ class App
     write_people_data
     print "Person created successfully\n"
     sleep 1
-    # run
+    run
   end
 
   def create_book
@@ -138,6 +139,7 @@ class App
     date = gets.chomp
     @rentals.push(Rental.new(date, @books[book_selected - 1], @people[person_selected - 1]))
     sending_message
+    write_rentals_data
     print "Rental created successfully\n"
     sleep 1
     run
@@ -212,7 +214,6 @@ class App
     data = if @people.length.positive?
              @people.map do |person|
                if person.instance_of?(Student)
-                #  permission = person.parent_permission[:parent_permission]
                  { class: person.class, age: person.age, name: person.name, classroom: @clasroom,
                    parent_permission: person.parent_permission, id: person.id }
                elsif person.instance_of?(Teacher)
@@ -226,6 +227,35 @@ class App
     people_file = File.open("#{DATA_DIRECTORY}people.json", 'w')
     people_file.write(JSON.pretty_generate(data))
     people_file.close
+  end
+
+  def read_rentals_from_file
+    if File.exist?("#{DATA_DIRECTORY}rentals.json")
+      rentals_file = File.open("#{DATA_DIRECTORY}rentals.json")
+      data = JSON.parse(rentals_file.read)
+      data.each do |rental|
+        filtered_person = @people.find { |person| rental['person_id'] == person.id }
+        filtered_book = @books.find { |book| rental['book_id'] == book.id }
+        @rentals << Rental.new(rental['date'], filtered_book, filtered_person)
+      end
+      rentals_file.close
+    else
+      @rentals = []
+      write_rentals_data
+    end
+  end
+
+  def write_rentals_data
+    data = if @rentals.length.positive?
+             @rentals.map do |rental|
+               { date: rental.date, person_id: rental.person.id, book_id: rental.book.id }
+             end
+           else
+             []
+           end
+    rentals_file = File.open("#{DATA_DIRECTORY}rentals.json", 'w')
+    rentals_file.write(JSON.pretty_generate(data))
+    rentals_file.close
   end
 
   def end_app
