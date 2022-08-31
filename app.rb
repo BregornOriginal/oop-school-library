@@ -15,6 +15,8 @@ class App
     @people = []
     @books = []
     @rentals = []
+    @clasroom = 'default class'
+    read_people_from_file
     read_books_from_file
   end
 
@@ -93,18 +95,19 @@ class App
     if type_of_person == 1
       print 'Has parent permission? [Y/N]: '
       permission = gets.chomp.upcase
-      @people.push(Student.new(age, nil, name, permission == 'Y'))
+      @people.push(Student.new(age, @classroom, name, permission == 'Y', id = nil))
     else
       print 'Specialization: '
       specialization = gets.chomp
       print 'Has parent permission? [Y/N]: '
       permission = gets.chomp.upcase
-      @people.push(Teacher.new(name, specialization, age, permission == 'Y'))
+      @people.push(Teacher.new(age, specialization, name, permission == 'Y', id = nil))
     end
     sending_message
+    write_people_data
     print "Person created successfully\n"
     sleep 1
-    run
+    # run
   end
 
   def create_book
@@ -183,6 +186,46 @@ class App
     books_file = File.open("#{DATA_DIRECTORY}books.json", 'w')
     books_file.write(JSON.pretty_generate(data))
     books_file.close
+  end
+
+  def read_people_from_file
+    if File.exist?("#{DATA_DIRECTORY}people.json")
+      people_file = File.open("#{DATA_DIRECTORY}people.json")
+      data = JSON.parse(people_file.read)
+      data.each do |person|
+        case person['class']
+        when 'Student'
+          @people << Student.new(person['age'], person['clasroom'], person['name'], person['parent_permission'],
+             person['id'])
+        when 'Teacher'
+          @people << Teacher.new(person['age'], person['specialization'], person['name'], person['id'])
+        end
+      end
+      people_file.close
+    else
+      @people = []
+      write_people_data
+    end
+  end
+
+  def write_people_data
+    data = if @people.length.positive?
+             @people.map do |person|
+               if person.instance_of?(Student)
+                #  permission = person.parent_permission[:parent_permission]
+                 { class: person.class, age: person.age, name: person.name, classroom: @clasroom,
+                   parent_permission: person.parent_permission, id: person.id }
+               elsif person.instance_of?(Teacher)
+                 { class: person.class, age: person.age, name: person.name, specialization: person.specialization,
+                   id: person.id }
+               end
+             end
+           else
+             []
+           end
+    people_file = File.open("#{DATA_DIRECTORY}people.json", 'w')
+    people_file.write(JSON.pretty_generate(data))
+    people_file.close
   end
 
   def end_app
