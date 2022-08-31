@@ -4,14 +4,14 @@ require './trimmer_decorator'
 
 class Person < Nameable
   attr_reader :id, :rentals
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
 
-  def initialize(age, name = 'Unknown', parent_permission = true)
+  def initialize(age, name = 'Unknown', id = nil, parent_permission = true)
     super()
-    @id = Random.rand(1..1000)
+    @parent_permission = parent_permission
     @name = name
     @age = age
-    @parent_permission = parent_permission
+    @id = id || Random.rand(1...100_000)
     @rentals = []
   end
 
