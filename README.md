@@ -29,45 +29,47 @@ There is no Live Demo for now.!
 
 ## Getting Started
 
-### Prerequisites
+Prerequisites
 
-**To get a local copy up and running follow these simple example steps**.
+- Ruby 3.1.2 or newer
+- Git
+- Modern web browser
 
-- You need to have a code editor to be able to run the code. VSCode is most preferred.
+## Getting Started
+- To get a local copy of this project clone this repository or download the Zip folder:
+git clone https://github.com/BregornOriginal/oop-school-library.git
 
-### Setup
+- To get started, In the root directory run:
+gem install bundler
 
-- To clone the code press in the green button at the top right corner in this page
-- Select the method that you want to clone
+- Then run:
+bundle install
 
-### Install
-
-- Run it in your code editor
+- Run ruby on rails app in the Command Line:
+ruby /main.rb
 
 ### Usage
 
-## Authors
+To edit this project:
+
+- Open the repository you cloned with a code editor that you like.
+
+- Edit the code as you want.
+
+## Author:
 
 👤 **@BregornOriginal**
 
-- GitHub: [@BregornOriginal](https://github.com/BregornOriginal)
+- GitHub: [![GitHub Badge](https://img.shields.io/badge/-BregornOriginal-white?logo=GitHub&logoColor=181717&style=plastic)](https://github.com/BregornOriginal)
 
-- Twitter: [@Bregorn](https://twitter.com/home)
+- Twitter: [![Twitter Badge](https://img.shields.io/badge/-Bregorn-white?logo=Twitter&logoColor=1DA1F2&style=plastic)](https://twitter.com/Bregorn)
 
-- LinkedIn: [@LinkedIn](https://www.linkedin.com/in/julio-gagliardi/)
+- LinkedIn: [![LinkedIn Badge](https://img.shields.io/badge/-JulioGagliardi-white?logo=LinkedIn&logoColor=1DA1F2&style=plastic)](https://www.linkedin.com/in/julio-gagliardi/)
 
-## 🤝 Contributing
+## :star2: Show your support
 
-Contributions, issues, and feature requests are welcome!
+Give a :star: if you like my project!
 
-Feel free to check the [issues page](../../issues/).
+## :pencil: License
 
-## Show your support
-
-Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+This project is [MIT](https://github.com/Gopxfs/catalog-of-my-things/blob/main/LICENSE) licensed.
